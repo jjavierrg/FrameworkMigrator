@@ -12,7 +12,7 @@ namespace FrameworkMigrator
             [Option('p', "path", Required = true, HelpText = "Set your parent repo folder")]
             public string RepoFolder { get; set; } = string.Empty;
 
-            [Option('b', "Branch", Required = true, HelpText = "Git branch name to create")]
+            [Option('b', "branch", Required = true, HelpText = "Git branch name to create")]
             public string BranchName { get; set; } = string.Empty;
 
             [Value(0, MetaName = "RepoUrl", HelpText = "Set the URL for the repository", Required = true)]
