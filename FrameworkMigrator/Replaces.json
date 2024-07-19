@@ -1,0 +1,146 @@
+﻿[
+    {
+        "FilePattern": "FunctionApp*.parameters.*.json",
+        "FileFormat": "Json",
+        "Replacements": [
+            {
+                "OldRegexValue": "\"value\": \"v6.0\"",
+                "NewValues": [ "\"value\": \"v8.0\"" ]
+            },
+            {
+                "OldRegexValue": "\"value\": \"dotnet\"",
+                "NewValues": [ "\"value\": \"dotnet-isolated\"" ]
+            }
+        ]
+    },
+    {
+        "FilePattern": "FunctionApp*.json",
+        "FileFormat": "Json",
+        "Replacements": [
+            {
+                "OldRegexValue": "\"defaultValue\": \"dotnet\",",
+                "NewValues": [ "\"defaultValue\": \"dotnet-isolated\"," ]
+            },
+            {
+                "OldRegexValue": "\"defaultValue\": \"v6.0\",",
+                "NewValues": [ "\"defaultValue\": \"v8.0\"," ]
+            },
+            {
+                "OldRegexValue": "\"node\",",
+                "NewValues": [
+                    "\"dotnet-isolated\",",
+                    "\"node\","
+                ]
+            }
+        ]
+    },
+    {
+        "FilePattern": "*.cs",
+        "Replacements": [
+            {
+                "OldRegexValue": "\\[FunctionName\\(",
+                "NewValues": [ "[Function(" ]
+            },
+            {
+                "OldRegexValue": ", Route = null\\)]",
+                "NewValues": [ ")]" ]
+            },
+            {
+                "OldRegexValue": "log\\.",
+                "NewValues": [ "_logger." ]
+            },
+            {
+                "OldRegexValue": ", ILogger logger",
+                "NewValues": []
+            },
+            {
+                "OldRegexValue": ", ILogger log",
+                "NewValues": []
+            },
+            {
+                "OldRegexValue": "ILogger logger",
+                "NewValues": []
+            },
+            {
+                "OldRegexValue": "IDurableActivityContext",
+                "NewValues": [ "object" ]
+            },
+            {
+                "OldRegexValue": "IDurableOrchestrationContext",
+                "NewValues": [ "TaskOrchestrationContext" ]
+            },
+            {
+                "OldRegexValue": "IDurableOrchestrationClient",
+                "NewValues": [ "DurableTaskClient" ]
+            }
+        ]
+    },
+    {
+        "FilePattern": "local*.settings*.json",
+        "FileFormat": "Json",
+        "Replacements": [
+            {
+                "OldRegexValue": "\"FUNCTIONS_WORKER_RUNTIME\": \"dotnet\",",
+                "NewValues": [ "\"FUNCTIONS_WORKER_RUNTIME\": \"dotnet-isolated\"," ]
+            }
+        ]
+    },
+    {
+        "FilePattern": "*.csproj",
+        "FileFormat": "Xml",
+        "Replacements": [
+            {
+                "OldRegexValue": "<TargetFramework>net6.0</TargetFramework>",
+                "NewValues": [ "<TargetFramework>net8.0</TargetFramework>" ]
+            },
+            {
+                "OldRegexValue": "<AzureFunctionsVersion>v4</AzureFunctionsVersion>",
+                "NewValues": [
+                    "<AzureFunctionsVersion>v4</AzureFunctionsVersion>",
+                    "<OutputType>Exe</OutputType>"
+                ]
+            },
+            {
+                "OldRegexValue": "<PackageReference Include=\"Microsoft\\.Extensions\\.Caching\\.StackExchangeRedis\" Version=\"\\S*\" />",
+                "NewValues": [ "<PackageReference Include=\"Microsoft.Extensions.Caching.StackExchangeRedis\" Version=\"8.0.6\" />" ]
+            },
+            {
+                "OldRegexValue": "<PackageReference Include=\"Microsoft\\.ApplicationInsights\\.AspNetCore\" Version=\"\\S*\" />",
+                "NewValues": []
+            },
+            {
+                "OldRegexValue": "<PackageReference Include=\"Microsoft\\.Azure\\.Functions\\.Extensions\" Version=\"\\S*\" />",
+                "NewValues": []
+            },
+            {
+                "OldRegexValue": "<PackageReference Include=\"Microsoft\\.Azure\\.WebJobs\\.Extensions\\.ServiceBus\" Version=\"\\S*\" />",
+                "NewValues": [ "<PackageReference Include=\"Microsoft.Azure.Functions.Worker.Extensions.ServiceBus\" Version=\"5.20.0\" />" ]
+            },
+            {
+                "OldRegexValue": "<PackageReference Include=\"Microsoft\\.Azure\\.WebJobs\\.Extensions\\.DurableTask\" Version=\"\\S*\" />",
+                "NewValues": [ "<PackageReference Include=\"Microsoft.Azure.Functions.Worker.Extensions.DurableTask\" Version=\"1.1.4\" />" ]
+            },
+            {
+                "OldRegexValue": "<PackageReference Include=\"Microsoft\\.NET\\.Sdk\\.Functions\" Version=\"\\S*\" />",
+                "NewValues": [
+                    "<FrameworkReference Include=\"Microsoft.AspNetCore.App\" />",
+                    "<PackageReference Include=\"Microsoft.Azure.Functions.Worker\" Version=\"1.21.0\" />",
+                    "<PackageReference Include=\"Microsoft.Azure.Functions.Worker.Sdk\" Version=\"1.17.2\" />",
+                    "<PackageReference Include=\"Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore\" Version=\"1.2.1\" />",
+                    "<PackageReference Include=\"Microsoft.ApplicationInsights.WorkerService\" Version=\"2.22.0\" />",
+                    "<PackageReference Include=\"Microsoft.Azure.Functions.Worker.ApplicationInsights\" Version=\"1.2.0\" />",
+                    "<PackageReference Include=\"Microsoft.Azure.Functions.Worker.Extensions.Timer\" Version=\"4.3.1\" />"
+                ]
+            },
+            {
+                "OldRegexValue": "<\\/ItemGroup>\\s*<\\/Project>",
+                "ReplaceIfRegex": "AzureFunctionsVersion",
+                "NewValues": [
+                    "</ItemGroup>",
+                    "<ItemGroup><Using Include=\"System.Threading.ExecutionContext\" Alias=\"ExecutionContext\" /></ItemGroup>",
+                    "</Project>"
+                ]
+            }
+        ]
+    }
+]
